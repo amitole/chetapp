@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { SocketContext } from "../socketContext";
+import { SocketContext } from "../context/socketContext";
 
 const Home = () => {
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import ChatBar from "./ChatBar";
 import ChatBody from "./ChatBody";
 import ChatFooter from "./ChatFooter";
-import { SocketContext } from "../socketContext";
+import { SocketContext } from "../context/socketContext";
 
 const ChatPage = ({ roomName }) => {
   const [messages, setMessages] = useState([]);

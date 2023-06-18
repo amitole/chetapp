@@ -3,7 +3,8 @@ import Home from "./components/Home";
 import Rooms from "./components/Rooms";
 import ChatPage from "./components/ChatPage";
 import NoPage from "./components/NoPage";
-import { SocketProvider } from "./socketContext";
+import { SocketProvider } from "./context/socketContext";
+import { UsersProvider } from "./context/UsersContext";
 
 function App() {
   const rooms = [
@@ -21,6 +22,7 @@ function App() {
   ));
   return (
     <SocketProvider>
+      <UsersProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -29,6 +31,7 @@ function App() {
           <Route path="*" element={<NoPage />}></Route>
         </Routes>
       </BrowserRouter>
+      </UsersProvider>
     </SocketProvider>
   );
 }

@@ -1,7 +1,19 @@
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { SocketContext } from "../context/socketContext";
+import { UsersContext } from "../context/UsersContext";
+
 
 const Rooms = () => {
+  const socket = useContext(SocketContext);
+  const [users, setUsers] = useContext(UsersContext);
+  // const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    socket.on("newUserResponse", (data) => setUsers(data));
+  }, [socket, users]);
+
   const rooms = [
     { id: 1, path: "/chet1", name: "Room 1" },
     { id: 2, path: "/chet2", name: "Room 2" },
@@ -24,15 +36,6 @@ const Rooms = () => {
       <nav>
         <ul>
           {links}
-          {/* <li className="room__btn">
-            <Link to="/chet1">Room 1</Link>
-          </li>
-          <li className="room__btn">
-            <Link to="/chet2">Room 2</Link>
-          </li>
-          <li className="room__btn">
-            <Link to="/chet3">Room 3</Link>
-          </li> */}
           <li>
             <button className="leaveChat__btn" onClick={handleLeaveChat}>
               LOG OFF

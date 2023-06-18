@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useContext } from "react";
+import { UsersContext } from "../context/UsersContext";
+
 
 const ChatBar = ({ socket, roomName }) => {
-  const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    socket.on("newUserResponse", (data) => setUsers(data));
-  }, [socket, users]);
+  
+  const [users] = useContext(UsersContext);
+
+  // useEffect(() => {
+  //   socket.on("newUserResponse", (data) => setUsers(data));
+  // }, [socket, users]);
 
   console.log("users 11", users);
   return (
