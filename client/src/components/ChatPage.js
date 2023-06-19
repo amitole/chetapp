@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useContext } from "react";
 import ChatBar from "./ChatBar";
 import ChatBody from "./ChatBody";
 import ChatFooter from "./ChatFooter";
-import { SocketContext } from "../context/socketContext";
+import { SocketContext } from "../context/SocketsContext";
 
 const ChatPage = ({ roomName }) => {
   const [messages, setMessages] = useState([]);
@@ -22,12 +22,15 @@ const ChatPage = ({ roomName }) => {
     lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+
+  const roomMessages = messages.filter((msg) => msg.roomNumber === roomName);
+
   return (
     <div className="chat">
       <ChatBar socket={socket} roomName={roomName} />
       <div className="chat__main">
         <ChatBody
-          messages={messages}
+          messages={roomMessages}
           typingStatus={typingStatus}
           lastMessageRef={lastMessageRef}
         />

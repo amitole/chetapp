@@ -1,21 +1,18 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { SocketContext } from "../context/socketContext";
 
-const Home = () => {
+const Login = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
-  const socket = useContext(SocketContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("userName", userName);
-    socket.emit("newUser", { userName, socketID: socket.id });
     navigate("/rooms");
   };
   return (
-    <form className="home__container" onSubmit={handleSubmit}>
-      <h2 className="home__header">Sign in to Open Chat</h2>
+    <form className="login__container" onSubmit={handleSubmit}>
+      <h2 className="login__header">Sign in to Open Chat</h2>
       <label htmlFor="username">Username</label>
       <input
         type="text"
@@ -26,9 +23,9 @@ const Home = () => {
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
       />
-      <button className="home__cta">SIGN IN</button>
+      <button className="login__cta">SIGN IN</button>
     </form>
   );
 };
 
-export default Home;
+export default Login;

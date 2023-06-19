@@ -21,10 +21,8 @@ socketIO.on("connection", (socket) => {
 
   socket.on("typing", (data) => socket.broadcast.emit("typingResponse", data));
 
-  socket.on("newUser", (data) => {
-    console.log("data", data);
+  socket.on("userJoinRoom", (data) => {
     users.push(data);
-    console.log("users", users);
     socketIO.emit("newUserResponse", users);
   });
 

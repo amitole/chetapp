@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
+import Login from "./components/Login";
 import Rooms from "./components/Rooms";
 import ChatPage from "./components/ChatPage";
 import NoPage from "./components/NoPage";
-import { SocketProvider } from "./context/socketContext";
+import { SocketProvider } from "./context/SocketsContext";
 import { UsersProvider } from "./context/UsersContext";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
       <UsersProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<Login />}></Route>
           <Route path="/rooms" element={<Rooms />}></Route>
           {pathes}
           <Route path="*" element={<NoPage />}></Route>
